@@ -9,7 +9,7 @@ class Solution:
         right = 0
         slen = len(s)
         lens = [[0] * slen for i in range(slen)]
-        
+
         for dist in range(slen):
             for x in range(slen - dist):
                 y = x + dist
@@ -24,5 +24,5 @@ class Solution:
                 if lens[x][y] > maxlen:
                     maxlen = lens[x][y]
                     left, right = x, y
-                    
-        return s[left: right + 1]
+
+        return s[left:right + 1]

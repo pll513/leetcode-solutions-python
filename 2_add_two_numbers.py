@@ -4,6 +4,7 @@ class ListNode:
         self.val = x
         self.next = None
 
+
 class Solution:
     def addTwoNumbers(self, l1, l2):
         """
@@ -37,8 +38,8 @@ class Solution:
             else:
                 ptr3 = l3 = ListNode(sum % 10)
             ptr = ptr.next
-            
+
         if carry:
             ptr3.next = ListNode(1)
-            
+
         return l3

@@ -7,11 +7,11 @@ class Solution:
         maxlen = 0
         longest = ''
         slen = len(s)
-        
+
         if slen:
             maxlen = 1
             longest = s[0]
-        
+
         for curr in range(slen):
             if curr >= 1 and s[curr] == s[curr - 1]:
                 currlen = 2
@@ -35,5 +35,5 @@ class Solution:
                 if currlen > maxlen:
                     maxlen = currlen
                     longest = s[left + 1:right]
-            
+
         return longest

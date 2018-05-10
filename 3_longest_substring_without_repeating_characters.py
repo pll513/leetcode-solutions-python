@@ -12,6 +12,6 @@ class Solution:
                 strlst = strlst[index + 1:]
             strlst += c
             if len(strlst) > maxlen:
-                maxlen = len(strlst) 
-        
+                maxlen = len(strlst)
+
         return maxlen
