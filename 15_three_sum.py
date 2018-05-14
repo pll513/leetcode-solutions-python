@@ -4,34 +4,29 @@ class Solution(object):
         :type nums: List[int]
         :rtype: List[List[int]]
         """
-        lst = []
-        nums2 = sorted(nums)
-        for i, n in enumerate(nums2):
-            if n > 0:
-                break
-            if i > 0 and n == nums2[i - 1]:
+        r = []
+        nums.sort()
+        numslen = len(nums)
+        for i in range(numslen - 2):
+            if i > 0 and nums[i - 1] == nums[i]:
                 continue
-            for pair in self.two_sum(nums2[i + 1:], -n):
-                group = sorted(pair + [n])
-                lst.append(group)
-
-        return lst
-
-    def two_sum(self, nums, target):
-        lst = []
-        left, right = 0, len(nums) - 1
-        while left < right:
-            twosum = nums[left] + nums[right]
-            if twosum < target:
-                left += 1
-            elif twosum > target:
-                right -= 1
-            else:
-                lst.append([nums[left], nums[right]])
-                while left < right and nums[left] == nums[left + 1]:
+            left, right = i + 1, numslen - 1
+            while left < right:
+                threesum = nums[i] + nums[left] + nums[right]
+                if threesum == 0:
+                    r.append([nums[i], nums[left], nums[right]])
+                    while left < right and nums[left] == nums[left + 1]:
+                        left += 1
+                    while left < right and nums[right] == nums[right - 1]:
+                        right -= 1
                     left += 1
-                while left < right and nums[right] == nums[right - 1]:
                     right -= 1
-                left += 1
-                right -= 1
-        return lst
+                elif threesum < 0:
+                    if nums[i] + 2 * nums[right] < 0:
+                        break
+                    left += 1
+                else:
+                    if nums[i] + 2 * nums[left] > 0:
+                        break
+                    right -= 1
+        return r
