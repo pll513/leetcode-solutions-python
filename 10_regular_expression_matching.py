@@ -16,6 +16,9 @@ class Solution:
         r[1][1] = s[0] == p[0] or p[0] == '.'
         for i in range(0, slen):
             for j in range(1, plen):
-                r[i + 1][j + 1] = (r[i][j] and (s[i] == p[j] or p[j] == '.')) or p[j] == '*' and (r[i + 1][j - 1] or (
-                    r[i + 1][j]) or (r[i][j + 1] and (s[i] == p[j - 1] or p[j - 1] == '.')))
+                if p[j] == '*':
+                    r[i + 1][j + 1] = r[i + 1][j - 1] or r[i + 1][j] or r[i][j +
+                                                                             1] and (s[i] == p[j - 1] or p[j - 1] == '.')
+                else:
+                    r[i + 1][j + 1] = r[i][j] and (s[i] == p[j] or p[j] == '.')
         return r[slen][plen]
