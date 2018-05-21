@@ -1,5 +1,5 @@
 class Solution:
-    def combinationSum(self, candidates, target):
+    def combinationSum2(self, candidates, target):
         """
         :type candidates: List[int]
         :type target: int
@@ -10,15 +10,15 @@ class Solution:
             ctmp, dtmp = [], []
             for i, l in enumerate(d):
                 suml = sum(l)
-                if l:
-                    smallest = l[-1]
-                else:
-                    smallest = -2**32
+                last = -1
                 for j, n in enumerate(c[i]):
-                    if n >= smallest:
+                    if n == last:
+                        continue
+                    else:
+                        last = n
                         cursum = suml + n
                         if cursum < target:
-                            ctmp.append(c[i])
+                            ctmp.append(c[i][j+1:])
                             dtmp.append(l + [n])
                         elif cursum == target:
                             r.append(l + [n])
